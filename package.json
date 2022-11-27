@@ -1,0 +1,26 @@
+{
+  "name": "demo_node_express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0ttam/demo_node_Express.git"
+  },
+  "author": "0ttam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0ttam/demo_node_Express/issues"
+  },
+  "homepage": "https://github.com/0ttam/demo_node_Express#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
