@@ -5,6 +5,8 @@ const path = require("path");
 
 const app = express();
 const port = 3000;
+// Static file
+app.use(express.static(path.join(__dirname, "public")));
 // Http log
 app.use(morgan("combined"));
 // Template engine
