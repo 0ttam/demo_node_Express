@@ -1,16 +1,12 @@
 const Course = require("../models/Course");
 class SiteController {
-  // [GET] news
-  index(req, res) {
-    Course.find({}, function (err, courses) {
-      if (!err) {
-        res.json(courses);
-      } else {
-        res.status(400).json({ error: "connect failure" });
-      }
-    });
+  // [GET] /
+  index(req, res, next) {
+    Course.find({})
+      .then((courses) => res.render("home"))
+      .catch((err) => next(err));
   }
-  // [GET] news/:slug
+  // [GET] /Search
   search(req, res) {
     res.send("search");
   }
