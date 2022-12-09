@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --inspect src/index.js",
+    "beautiful": "prettier --single-quote  --trailing-comma all --tab-width 4 --write src/**/*.{js,json,scss,hbs}",
     "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,13 +31,5 @@
     "node-sass": "^8.0.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.8.0"
-  },
-  "lint-staged": {
-    "src/**/*.{js,json,scss,hbs}": "prettier --single-quote  --trailing-comma all --tab-width 4 --write"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
