@@ -1,54 +1,18 @@
-<nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
-    <a class='navbar-brand' href='/'>Youtube custom</a>
-    <button
-        class='navbar-toggler'
-        type='button'
-        data-toggle='collapse'
-        data-target='#navbarSupportedContent'
-        aria-controls='navbarSupportedContent'
-        aria-expanded='false'
-        aria-label='Toggle navigation'
-    >
-        <span class='navbar-toggler-icon'></span>
-    </button>
+<div class='container'>
+    <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+        <a class='navbar-brand' href='/'>Youtube custom</a>
+        <button
+            class='navbar-toggler'
+            type='button'
+            data-toggle='collapse'
+            data-target='#navbarSupportedContent'
+            aria-controls='navbarSupportedContent'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+        >
+            <span class='navbar-toggler-icon'></span>
+        </button>
 
-    <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-        <ul class='navbar-nav mr-auto'>
-            <li class='nav-item active'>
-                <a class='nav-link' href='/courses/create'>Add Video
-                    <span class='sr-only'>(current)</span></a>
-            </li>
-            <li class='nav-item'>
-                <a class='nav-link' href='#'>Link</a>
-            </li>
-            <li class='nav-item dropdown'>
-                <a
-                    class='nav-link dropdown-toggle'
-                    href='#'
-                    id='navbarDropdown'
-                    role='button'
-                    data-toggle='dropdown'
-                    aria-haspopup='true'
-                    aria-expanded='false'
-                >
-                    Dropdown
-                </a>
-                <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                    <a class='dropdown-item' href='#'>Action</a>
-                    <a class='dropdown-item' href='#'>Another action</a>
-                    <div class='dropdown-divider'></div>
-                    <a class='dropdown-item' href='#'>Something else here</a>
-                </div>
-            </li>
-            <li class='nav-item'>
-                <a
-                    class='nav-link disabled'
-                    href='#'
-                    tabindex='-1'
-                    aria-disabled='true'
-                >Disabled</a>
-            </li>
-        </ul>
         <form class='form-inline my-2 my-lg-0'>
             <input
                 class='form-control mr-sm-2'
@@ -61,5 +25,38 @@
                 type='submit'
             >Search</button>
         </form>
-    </div>
-</nav>
+
+        <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+            <ul class='navbar-nav ml-auto'>
+                <li class='nav-item dropdown'>
+                    <a
+                        class='nav-link dropdown-toggle'
+                        href='#'
+                        id='navbarDropdown'
+                        role='button'
+                        data-toggle='dropdown'
+                        aria-haspopup='true'
+                        aria-expanded='false'
+                    >
+                        <img
+                            class='user-avatar'
+                            src='https://scontent.fsgn17-1.fna.fbcdn.net/v/t39.30808-1/247227729_2678448602300805_3784548693574815629_n.jpg?stp=c0.39.100.100a_dst-jpg_p100x100&_nc_cat=105&ccb=1-7&_nc_sid=7206a8&_nc_ohc=xJEzCyDWUS8AX_cM5TI&_nc_ht=scontent.fsgn17-1.fna&oh=00_AfBtPFGFPbS-xFnQnDPoacSd7GR4rzId9MyaHW5UppGFfA&oe=639BE6D7'
+                        />
+                        Tâm Võ
+                    </a>
+                    <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                        <a class='dropdown-item' href='/courses/create'>Add
+                            Video
+                            <span class='sr-only'>(current)</span>
+                        </a>
+                        <a class='dropdown-item' href='/me/stored/courses'>My
+                            Video</a>
+                        <div class='dropdown-divider'></div>
+                        <a class='dropdown-item' href='#'>Log out</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</div>
