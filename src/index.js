@@ -19,7 +19,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 
 // Static file
 app.use(express.static(path.join(__dirname, 'public')));
