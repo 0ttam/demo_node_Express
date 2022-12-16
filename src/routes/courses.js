@@ -11,6 +11,10 @@ router.post('/store', courseController.store);
 router.put('/:id', courseController.update);
 // [DELETE] /courses/:id
 router.delete('/:id', courseController.destroy);
+// [DELETE] /courses/:id
+router.delete('/:id/force', courseController.forceDestroy);
+// [PATCH] /courses/:id/restore
+router.patch('/:id/restore', courseController.restore);
 // [GET] /courses/:slug
 router.get('/:slug', courseController.show);
 module.exports = router;
