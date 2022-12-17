@@ -15,32 +15,23 @@
         </thead>
         <tbody>
             {{#each courses}}
-                <tr>
-                    <th scope='row'>{{sum @index 1}}</th>
-                    <td>{{this.name}}</td>
-                    <td>{{this.level}}</td>
-                    <td>{{this.createdAt}}</td>
-                    <td>
-                        <a
-                            href=''
-                            class='btn btn-link btn-restore'
-                            data-id='{{this._id}}'
-                        >Khôi phục</a>
-                        <a
-                            href=''
-                            class='btn btn-link'
-                            data-id='{{this._id}}'
-                            data-toggle='modal'
-                            data-target='#delete-video-modal'
-                        >Xóa vĩnh viễn</a>
-                    </td>
-                </tr>
+            <tr>
+                <th scope='row'>{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.level}}</td>
+                <td>{{this.createdAt}}</td>
+                <td>
+                    <a href='' class='btn btn-link btn-restore' data-id='{{this._id}}'>Khôi phục</a>
+                    <a href='' class='btn btn-link' data-id='{{this._id}}' data-toggle='modal'
+                        data-target='#delete-video-modal'>Xóa vĩnh viễn</a>
+                </td>
+            </tr>
             {{else}}
-                <tr>
-                    <td colspan='5' class='text-center'>Thùng rác của bạn trống.
-                        <a href='/me/stored/courses'>Đến danh sách khóa học</a>
-                    </td>
-                </tr>
+            <tr>
+                <td colspan='5' class='text-center'>Thùng rác của bạn trống.
+                    <a href='/me/stored/courses'>Đến danh sách khóa học</a>
+                </td>
+            </tr>
             {{/each}}
         </tbody>
     </table>
@@ -48,23 +39,12 @@
 
 {{! modal remove Video }}
 
-<div
-    class='modal fade'
-    id='delete-video-modal'
-    tabindex='-1'
-    aria-labelledby='exampleModalLabel'
-    aria-hidden='true'
->
+<div class='modal fade' id='delete-video-modal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
     <div class='modal-dialog'>
         <div class='modal-content'>
             <div class='modal-header'>
                 <h5 class='modal-title' id='exampleModalLabel'>Xóa Video</h5>
-                <button
-                    type='button'
-                    class='close'
-                    data-dismiss='modal'
-                    aria-label='Close'
-                >
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                 </button>
             </div>
@@ -72,16 +52,8 @@
                 Bạn chắc chắn xóa vĩnh viễn Video?
             </div>
             <div class='modal-footer'>
-                <button
-                    type='button'
-                    class='btn btn-primary'
-                    data-dismiss='modal'
-                >Dừng việc xóa</button>
-                <button
-                    id='btn-delete-video'
-                    type='button'
-                    class='btn btn-danger'
-                >Xóa vĩnh viễn</button>
+                <button type='button' class='btn btn-primary' data-dismiss='modal'>Dừng việc xóa</button>
+                <button id='btn-delete-video' type='button' class='btn btn-danger'>Xóa vĩnh viễn</button>
             </div>
         </div>
     </div>
@@ -94,17 +66,28 @@
 
 {{! Scripts }}
 <script>
-    document.addEventListener("DOMContentLoaded", function () { var videoId; var
-    btnDeleteVideo = document.getElementById('btn-delete-video'); var deleteForm
-    = document.forms['delete-video-form']; var btnRestore = $('.btn-restore');
-    var restoreForm = document.forms['restore-video-form']; // When dialog
-    confirm show $('#delete-video-modal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); videoId = button.data('id'); }); //
-    When click button Delete btnDeleteVideo.onclick = function () {
-    deleteForm.action = '/courses/' + videoId + '/force?_method=DELETE';
-    deleteForm.submit(); } //Restore button click btnRestore.click(function
-    (event) { event.preventDefault(); var videoId = $(this).data('id');
-    restoreForm.action = '/courses/' + videoId + '/restore?_method=PATCH';
-    restoreForm.submit(); }) })
+    document.addEventListener("DOMContentLoaded", function () {
+        var videoId;
+        var btnDeleteVideo = document.getElementById('btn-delete-video');
+        var deleteForm = document.forms['delete-video-form'];
+        var btnRestore = $('.btn-restore');
+        var restoreForm = document.forms['restore-video-form'];
+        // When dialog confirm show 
+        $('#delete-video-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); videoId = button.data('id');
+        });
+        // When click button Delete 
+        btnDeleteVideo.onclick = function () {
+            deleteForm.action = '/courses/' + videoId + '/force?_method=DELETE';
+            deleteForm.submit();
+        }
+        //Restore button click 
+        btnRestore.click(function (event) {
+            event.preventDefault();
+            var videoId = $(this).data('id');
+            restoreForm.action = '/courses/' + videoId + '/restore?_method=PATCH';
+            restoreForm.submit();
+        })
+    })
 
 </script>
