@@ -5,6 +5,10 @@ const courseController = require('../app/controllers/CourseController');
 router.get('/create', courseController.create);
 // [GET] /courses/:id/edit
 router.get('/:id/edit', courseController.edit);
+//[POST] /courses/handle-form-trash-action
+router.post('/handle-form-trash-action', courseController.handleFormTrashAction);
+//[POST] /courses/handleFormAction
+router.post('/handle-form-action', courseController.handleFormAction)
 // [POST] /courses/store
 router.post('/store', courseController.store);
 // [PUT] /courses/:id
