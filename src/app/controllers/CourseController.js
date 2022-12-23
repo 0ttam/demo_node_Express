@@ -2,7 +2,7 @@ const Course = require('../models/Course');
 const { mongooseToObject } = require('../../util/mongoose');
 class CourseController {
     // [GET] /courses/:slug
-    show(req, res, next) {   
+    show(req, res, next) {
         Course.findOne({ slug: req.params.slug })
             .then((course) => {
                 res.render('courses/show', {
@@ -62,26 +62,26 @@ class CourseController {
     }
     // [POST] /courses/handleFormAction
     handleFormAction(req, res, next) {
-        switch(req.body.action) {
+        switch (req.body.action) {
             case 'delete':
                 {
-                    Course.delete({ _id: {$in: req.body.courseIds} })   
-                    .then(() => res.redirect('back'))
-                    .catch(next);
+                    Course.delete({ _id: { $in: req.body.courseIds } })
+                        .then(() => res.redirect('back'))
+                        .catch(next);
                 }
                 break;
             default:
-                res.json({message: 'Action invalid'});
+                res.json({ message: 'Action invalid' });
         }
     }
-    // [POST] /courses/handle-form-trash-action 
+    // [POST] /courses/handle-form-trash-action
     handleFormTrashAction(req, res, next) {
-        switch(req.body.action) {
-            case 'delete': 
+        switch (req.body.action) {
+            case 'delete':
                 {
-                Course.deleteOne({ _id: {$in: req.body.courseIds} })   
-                    .then(() => res.redirect('back'))
-                    .catch(next);
+                    Course.deleteOne({ _id: { $in: req.body.courseIds } })
+                        .then(() => res.redirect('back'))
+                        .catch(next);
                 }
                 break;
             default: {
