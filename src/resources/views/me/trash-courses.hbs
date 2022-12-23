@@ -122,21 +122,13 @@
             checkboxAll.prop('checked', isCheckedAll);
             reRenderCheckboxSubmitTrashAll();
         });
-        // check button has submitable
-        btnCheckboxSubmitTrashAll.on('submit', function (event) {
-            var isSubmitable = !$(this).hasClass('disabled');
-            if (!isSubmitable) {
-                event.preventDefault();
-            }
-
-        });
         // Re-render checkbox submit trash all
         function reRenderCheckboxSubmitTrashAll() {
             var isCheckedCount = $('input[name="courseIds[]"]:checked').length;
             if (isCheckedCount > 0) {
-                btnCheckboxSubmitTrashAll.removeClass('disabled');
+                btnCheckboxSubmitTrashAll.attr('disabled', false);
             } else {
-                btnCheckboxSubmitTrashAll.addClass('disabled');
+                btnCheckboxSubmitTrashAll.attr('disabled', true);
             }
 
         }

@@ -11,11 +11,11 @@
                     Chọn tất cả
                 </label>
             </div>
-            <select class='form-control form-control-sm checkbox-select-all-option' name='action' required>
+            <select class='form-control form-control-sm checkbox-select-all-option' name='action' required='required'>
                 <option value=''>--Hành động--</option>
                 <option value='delete'>Xóa</option>
             </select>
-            <button type='submit' class='btn btn-primary btn-sm btn-checkbox-submit-all disabled'>Thực hiện</button>
+            <button type='submit' class='btn btn-primary btn-sm btn-checkbox-submit-all' disabled='disabled'>Thực hiện</button>
         </div>
     </div>
     <table class='table mt-4'>
@@ -116,21 +116,15 @@
             checkboxAll.prop('checked', isCheckedAll);
             renderCheckAllSubmitBtn();
         })
-        //Check submit all btn
-        btnCheckboxSubmitAll.on('submit', function (event) {
-            var isSubmitable = !$(this).hasClass('disabled');
-            if (!isSubmitable) {
-                event.preventDefault();
-            }
-        })
+        
         // Re-render check all submit btn    
         function renderCheckAllSubmitBtn() {
             var isChecked = $('input[name="courseIds[]"]:checked').length;
             if (isChecked > 0) {
-                btnCheckboxSubmitAll.removeClass('disabled');
+                btnCheckboxSubmitAll.attr('disabled', false);
 
             } else {
-                btnCheckboxSubmitAll.addClass('disabled');
+                btnCheckboxSubmitAll.attr('disabled', true);
             }
         }
     }
