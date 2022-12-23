@@ -19,14 +19,14 @@
             <select
                 class='form-control form-control-sm checkbox-select-all-option'
                 name='action'
-                required
+                required='required'
             >
                 <option value=''>--Hành động--</option>
                 <option value='delete'>Xóa vĩnh viễn</option>
             </select>
             <button
                 type='submit'
-                class='btn btn-primary btn-sm btn-checkbox-submit-trash-all disabled'
+                class='btn btn-primary btn-sm btn-checkbox-submit-trash-all' disabled='disabled'
             >Thực hiện</button>
         </div>
     </div>
@@ -170,21 +170,14 @@
             checkboxAll.prop('checked', isCheckedAll);
             reRenderCheckboxSubmitTrashAll();
         });
-        // check button has submitable
-        btnCheckboxSubmitTrashAll.on('submit', function (event) {
-            var isSubmitable = !$(this).hasClass('disabled');
-            if (!isSubmitable) {
-                event.preventDefault();
-            }
-
-        });
+        
         // Re-render checkbox submit trash all
         function reRenderCheckboxSubmitTrashAll() {
             var isCheckedCount = $('input[name="courseIds[]"]:checked').length;
             if (isCheckedCount > 0) {
-                btnCheckboxSubmitTrashAll.removeClass('disabled');
+                btnCheckboxSubmitTrashAll.attr('disabled', false);
             } else {
-                btnCheckboxSubmitTrashAll.addClass('disabled');
+                btnCheckboxSubmitTrashAll.attr('disabled', true);
             }
 
         }
