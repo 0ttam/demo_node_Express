@@ -1,18 +1,33 @@
-<form name='container-form' method='post' action='/courses/handle-form-trash-action' class='mt-4'>
+<form
+    name='container-form'
+    method='post'
+    action='/courses/handle-form-trash-action'
+    class='mt-4'
+>
     <div>
         <h3>Thùng rác của bạn</h3>
         <a href='/me/stored/courses'>Danh sách khóa học</a>
         <div class='mt-4 d-flex align-items-center'>
             <div class='form-check'>
-                <input type='checkbox' class='form-check-input' id='checkbox-all'>
+                <input
+                    type='checkbox'
+                    class='form-check-input'
+                    id='checkbox-all'
+                />
                 <label class='form-check-label' for='checkbox-all'>Chọn tất cả</label>
             </div>
-            <select class='form-control form-control-sm checkbox-select-all-option' name='action' required>
+            <select
+                class='form-control form-control-sm checkbox-select-all-option'
+                name='action'
+                required
+            >
                 <option value=''>--Hành động--</option>
                 <option value='delete'>Xóa vĩnh viễn</option>
             </select>
-            <button type='submit' class='btn btn-primary btn-sm btn-checkbox-submit-trash-all disabled'>Thực
-                hiện</button>
+            <button
+                type='submit'
+                class='btn btn-primary btn-sm btn-checkbox-submit-trash-all disabled'
+            >Thực hiện</button>
         </div>
     </div>
     <table class='table mt-4'>
@@ -28,28 +43,42 @@
         </thead>
         <tbody>
             {{#each courses}}
-            <tr>
-                <td>
-                    <div class='form-check'>
-                        <input type='checkbox' class='form-check-input' name='courseIds[]' value='{{this._id}}'>
-                    </div>
-                </td>
-                <td scope='row'>{{sum @index 1}}</td>
-                <td>{{this.name}}</td>
-                <td>{{this.level}}</td>
-                <td>{{this.createdAt}}</td>
-                <td>
-                    <a href='' class='btn btn-link btn-restore' data-id='{{this._id}}'>Khôi phục</a>
-                    <a href='' class='btn btn-link' data-id='{{this._id}}' data-toggle='modal'
-                        data-target='#delete-video-modal'>Xóa vĩnh viễn</a>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <div class='form-check'>
+                            <input
+                                type='checkbox'
+                                class='form-check-input'
+                                name='courseIds[]'
+                                value='{{this._id}}'
+                            />
+                        </div>
+                    </td>
+                    <td scope='row'>{{sum @index 1}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.level}}</td>
+                    <td>{{this.createdAt}}</td>
+                    <td>
+                        <a
+                            href=''
+                            class='btn btn-link btn-restore'
+                            data-id='{{this._id}}'
+                        >Khôi phục</a>
+                        <a
+                            href=''
+                            class='btn btn-link'
+                            data-id='{{this._id}}'
+                            data-toggle='modal'
+                            data-target='#delete-video-modal'
+                        >Xóa vĩnh viễn</a>
+                    </td>
+                </tr>
             {{else}}
-            <tr>
-                <td colspan='5' class='text-center'>Thùng rác của bạn trống.
-                    <a href='/me/stored/courses'>Đến danh sách khóa học</a>
-                </td>
-            </tr>
+                <tr>
+                    <td colspan='5' class='text-center'>Thùng rác của bạn trống.
+                        <a href='/me/stored/courses'>Đến danh sách khóa học</a>
+                    </td>
+                </tr>
             {{/each}}
         </tbody>
     </table>
@@ -57,12 +86,23 @@
 
 {{! modal remove Video }}
 
-<div class='modal fade' id='delete-video-modal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+<div
+    class='modal fade'
+    id='delete-video-modal'
+    tabindex='-1'
+    aria-labelledby='exampleModalLabel'
+    aria-hidden='true'
+>
     <div class='modal-dialog'>
         <div class='modal-content'>
             <div class='modal-header'>
                 <h5 class='modal-title' id='exampleModalLabel'>Xóa Video</h5>
-                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                <button
+                    type='button'
+                    class='close'
+                    data-dismiss='modal'
+                    aria-label='Close'
+                >
                     <span aria-hidden='true'>&times;</span>
                 </button>
             </div>
@@ -70,8 +110,16 @@
                 Bạn chắc chắn xóa vĩnh viễn Video?
             </div>
             <div class='modal-footer'>
-                <button type='button' class='btn btn-primary' data-dismiss='modal'>Dừng việc xóa</button>
-                <button id='btn-delete-video' type='button' class='btn btn-danger'>Xóa vĩnh viễn</button>
+                <button
+                    type='button'
+                    class='btn btn-primary'
+                    data-dismiss='modal'
+                >Dừng việc xóa</button>
+                <button
+                    id='btn-delete-video'
+                    type='button'
+                    class='btn btn-danger'
+                >Xóa vĩnh viễn</button>
             </div>
         </div>
     </div>
@@ -84,62 +132,34 @@
 
 {{! Scripts }}
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var videoId;
-        var checkboxAll = $('#checkbox-all');
-        var courseItemsCheckbox = $('input[name="courseIds[]"]');
-        var btnCheckboxSubmitTrashAll = $('.btn-checkbox-submit-trash-all');
-        var btnDeleteVideo = document.getElementById('btn-delete-video');
-        var deleteForm = document.forms['delete-video-form'];
-        var btnRestore = $('.btn-restore');
-        var restoreForm = document.forms['restore-video-form'];
-        var containerForm = document.forms['container-form'];
-        // When dialog confirm show 
-        $('#delete-video-modal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); videoId = button.data('id');
-        });
-        // When click button Delete 
-        btnDeleteVideo.onclick = function () {
-            deleteForm.action = '/courses/' + videoId + '/force?_method=DELETE';
-            deleteForm.submit();
-        }
-        //Restore button click 
-        btnRestore.click(function (event) {
-            event.preventDefault();
-            var videoId = $(this).data('id');
-            restoreForm.action = '/courses/' + videoId + '/restore?_method=PATCH';
-            restoreForm.submit();
-        })
-        // When click checkbox all
-        checkboxAll.click(function (event) {
-            var isChecked = $(this).prop('checked');
-            courseItemsCheckbox.prop('checked', isChecked);
-            reRenderCheckboxSubmitTrashAll();
-        })
-        // When click course items checkbox 
-        courseItemsCheckbox.change(function (event) {
-            var isCheckedAll = courseItemsCheckbox.length === $('input[name="courseIds[]"]:checked').length;
-            checkboxAll.prop('checked', isCheckedAll);
-            reRenderCheckboxSubmitTrashAll();
-        });
-        // check button has submitable
-        btnCheckboxSubmitTrashAll.on('submit', function (event) {
-            var isSubmitable = !$(this).hasClass('disabled');
-            if (!isSubmitable) {
-                event.preventDefault();
-            }
-
-        });
-        // Re-render checkbox submit trash all
-        function reRenderCheckboxSubmitTrashAll() {
-            var isCheckedCount = $('input[name="courseIds[]"]:checked').length;
-            if (isCheckedCount > 0) {
-                btnCheckboxSubmitTrashAll.removeClass('disabled');
-            } else {
-                btnCheckboxSubmitTrashAll.addClass('disabled');
-            }
-
-        }
-    })
+    document.addEventListener('DOMContentLoaded', function () { var videoId; var
+    checkboxAll = $('#checkbox-all'); var courseItemsCheckbox =
+    $('input[name="courseIds[]"]'); var btnCheckboxSubmitTrashAll =
+    $('.btn-checkbox-submit-trash-all'); var btnDeleteVideo =
+    document.getElementById('btn-delete-video'); var deleteForm =
+    document.forms['delete-video-form']; var btnRestore = $('.btn-restore'); var
+    restoreForm = document.forms['restore-video-form']; var containerForm =
+    document.forms['container-form']; // When dialog confirm show
+    $('#delete-video-modal').on('show.bs.modal', function (event) { var button =
+    $(event.relatedTarget); videoId = button.data('id'); }); // When click
+    button Delete btnDeleteVideo.onclick = function () { deleteForm.action =
+    '/courses/' + videoId + '/force?_method=DELETE'; deleteForm.submit(); }
+    //Restore button click btnRestore.click(function (event) {
+    event.preventDefault(); var videoId = $(this).data('id'); restoreForm.action
+    = '/courses/' + videoId + '/restore?_method=PATCH'; restoreForm.submit(); })
+    // When click checkbox all checkboxAll.click(function (event) { var
+    isChecked = $(this).prop('checked'); courseItemsCheckbox.prop('checked',
+    isChecked); reRenderCheckboxSubmitTrashAll(); }) // When click course items
+    checkbox courseItemsCheckbox.change(function (event) { var isCheckedAll =
+    courseItemsCheckbox.length ===
+    $('input[name="courseIds[]"]:checked').length; checkboxAll.prop('checked',
+    isCheckedAll); reRenderCheckboxSubmitTrashAll(); }); // check button has
+    submitable btnCheckboxSubmitTrashAll.on('submit', function (event) { var
+    isSubmitable = !$(this).hasClass('disabled'); if (!isSubmitable) {
+    event.preventDefault(); } }); // Re-render checkbox submit trash all
+    function reRenderCheckboxSubmitTrashAll() { var isCheckedCount =
+    $('input[name="courseIds[]"]:checked').length; if (isCheckedCount > 0) {
+    btnCheckboxSubmitTrashAll.removeClass('disabled'); } else {
+    btnCheckboxSubmitTrashAll.addClass('disabled'); } } })
 
 </script>
