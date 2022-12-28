@@ -1,22 +1,12 @@
-<form
-    name='container-form'
-    method='post'
-    action='/courses/handle-form-action'
-    class='mt-4'
->
+<form name='container-form' method='post' action='/courses/handle-form-action' class='mt-4'>
     <div>
         <h3>Video của bạn</h3>
         {{#if deleteCount}}
-            <a href='/me/trash/courses'>Thùng rác({{this.deleteCount}})</a>
+        <a href='/me/trash/courses'>Thùng rác({{this.deleteCount}})</a>
         {{/if}}
         <div class='mt-4 d-flex align-items-center'>
             <div class='form-check'>
-                <input
-                    class='form-check-input'
-                    type='checkbox'
-                    value=''
-                    id='checkbox-all'
-                />
+                <input class='form-check-input' type='checkbox' value='' id='checkbox-all' />
                 <label class='form-check-label' for='checkbox-all'>
                     Chọn tất cả
                 </label>
@@ -25,7 +15,8 @@
                 <option value=''>--Hành động--</option>
                 <option value='delete'>Xóa</option>
             </select>
-            <button type='submit' class='btn btn-primary btn-sm btn-checkbox-submit-all' disabled='disabled'>Thực hiện</button>
+            <button type='submit' class='btn btn-primary btn-sm btn-checkbox-submit-all' disabled='disabled'>Thực
+                hiện</button>
         </div>
     </div>
     <table class='table mt-4'>
@@ -33,50 +24,45 @@
             <tr>
                 <th></th>
                 <th scope='col'>#</th>
-                <th scope='col'>Video Name</th>
-                <th scope='col'>Level</th>
-                <th scope='col' colspan='2'>create Date</th>
+                <th scope='col'>
+                    Video Name
+                    {{{sortable 'name' _sort}}}
 
+                </th>
+                <th scope='col'>
+                    Level
+                    {{{sortable 'level' _sort}}}
+                </th>
+                <th scope='col' colspan='2'>
+                    create Date
+                    {{{sortable 'createdAt' _sort}}}
+                </th>
             </tr>
         </thead>
         <tbody>
             {{#each courses}}
-                <tr>
-                    <td>
-                        <div class='form-check'>
-                            <input
-                                class='form-check-input'
-                                type='checkbox'
-                                name='courseIds[]'
-                                value='{{this._id}}'
-                                id=''
-                            />
-                        </div>
-                    </td>
-                    <th scope=' row'>{{sum @index 1}}</th>
-                    <td>{{this.name}}</td>
-                    <td>{{this.level}}</td>
-                    <td>{{this.createdAt}}</td>
-                    <td>
-                        <a
-                            href='/courses/{{this._id}}/edit'
-                            class='btn btn-link'
-                        >Cập nhật</a>
-                        <a
-                            href=''
-                            class='btn btn-link'
-                            data-id='{{this._id}}'
-                            data-toggle='modal'
-                            data-target='#delete-video-modal'
-                        >Xóa bỏ</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <div class='form-check'>
+                        <input class='form-check-input' type='checkbox' name='courseIds[]' value='{{this._id}}' id='' />
+                    </div>
+                </td>
+                <th scope=' row'>{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.level}}</td>
+                <td>{{this.createdAt}}</td>
+                <td>
+                    <a href='/courses/{{this._id}}/edit' class='btn btn-link'>Cập nhật</a>
+                    <a href='' class='btn btn-link' data-id='{{this._id}}' data-toggle='modal'
+                        data-target='#delete-video-modal'>Xóa bỏ</a>
+                </td>
+            </tr>
             {{else}}
-                <tr>
-                    <td colspan='5' class='text-center'>Bạn chưa có video nào.
-                        <a href='/courses/create'>Đăng ngay video</a>
-                    </td>
-                </tr>
+            <tr>
+                <td colspan='5' class='text-center'>Bạn chưa có video nào.
+                    <a href='/courses/create'>Đăng ngay video</a>
+                </td>
+            </tr>
             {{/each}}
         </tbody>
     </table>
@@ -84,23 +70,12 @@
 
 {{! modal remove Video }}
 
-<div
-    class='modal fade'
-    id='delete-video-modal'
-    tabindex='-1'
-    aria-labelledby='exampleModalLabel'
-    aria-hidden='true'
->
+<div class='modal fade' id='delete-video-modal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
     <div class='modal-dialog'>
         <div class='modal-content'>
             <div class='modal-header'>
                 <h5 class='modal-title' id='exampleModalLabel'>Xóa Video</h5>
-                <button
-                    type='button'
-                    class='close'
-                    data-dismiss='modal'
-                    aria-label='Close'
-                >
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                 </button>
             </div>
@@ -108,16 +83,8 @@
                 Bạn chắc chắn xóa bỏ Video?
             </div>
             <div class='modal-footer'>
-                <button
-                    type='button'
-                    class='btn btn-primary'
-                    data-dismiss='modal'
-                >Dừng việc xóa</button>
-                <button
-                    id='btn-delete-video'
-                    type='button'
-                    class='btn btn-danger'
-                >Xóa bỏ</button>
+                <button type='button' class='btn btn-primary' data-dismiss='modal'>Dừng việc xóa</button>
+                <button id='btn-delete-video' type='button' class='btn btn-danger'>Xóa bỏ</button>
             </div>
         </div>
     </div>
@@ -159,15 +126,15 @@
             checkboxAll.prop('checked', isCheckedAll);
             renderCheckAllSubmitBtn();
         })
-    
+
         // Re-render check all submit btn    
         function renderCheckAllSubmitBtn() {
             var isChecked = $('input[name="courseIds[]"]:checked').length;
             if (isChecked > 0) {
-                btnCheckboxSubmitAll.attr('disabled',false);
+                btnCheckboxSubmitAll.attr('disabled', false);
 
             } else {
-                btnCheckboxSubmitAll.attr('disabled',true);
+                btnCheckboxSubmitAll.attr('disabled', true);
             }
         }
     }
